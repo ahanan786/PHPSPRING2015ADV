@@ -27,7 +27,7 @@ if ( count($errors) > 0 ) {
     
     //save to to database.
     $dbConfig = array(
-        "DB_DNS"=>'mysql:host=localhost;port=3306;dbname=PHPadvClassSpring2015',
+        "DB_DNS"=>'mysql:host=localhost;port=3306;dbname=phpadvspring2015',
         "DB_USER"=>'root',
         "DB_PASSWORD"=>''
         );
@@ -62,7 +62,7 @@ if ( count($errors) > 0 ) {
     <?php 
     
     $dbConfig = array(
-        "DB_DNS" => 'mysql:host=localhost;port=3306;dbname=PHPadvClassSpring2015',
+        "DB_DNS" => 'mysql:host=localhost;port=3306;dbname=phpadvspring2015',
         "DB_USER" => 'root', 
         "DB_PASSWORD" => '');
     $pdo = new DB($dbConfig);

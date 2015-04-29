@@ -62,7 +62,7 @@ and open the template in the editor.
         
         <?php
         
-        //Display values from database
+     
         $emailClass = new emailTypeDB();
         $newresult = $emailClass->display();
         
