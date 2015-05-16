@@ -48,16 +48,9 @@
 [55528acf3e982]	[exception]	[05-13-2015 1:20am]	New Phone Not Created
 [55528acf71670]	[exception]	[05-13-2015 1:20am]	New Phone Not Created
 [55528acfa47cf]	[exception]	[05-13-2015 1:20am]	New Phone Not Created
-[555298128d83c]	[exception]	[05-13-2015 2:17am]	New Phone Not Created
-[555298141090a]	[exception]	[05-13-2015 2:17am]	New Phone Not Created
-[5556874f2b3a7]	[exception]	[05-16-2015 1:54am]	New Phone Type Not Created
-[555687574b45f]	[exception]	[05-16-2015 1:55am]	New Phone Not Created
-[555687578ecc5]	[exception]	[05-16-2015 1:55am]	New Phone Not Created
-[55568757a4c04]	[exception]	[05-16-2015 1:55am]	New Phone Not Created
-[55568757d18bf]	[exception]	[05-16-2015 1:55am]	New Phone Not Created
-[555687581e6d9]	[exception]	[05-16-2015 1:55am]	New Phone Not Created
-[55568a48b4eb1]	[exception]	[05-16-2015 2:07am]	1 ID does not exist
-[55568a4e800bf]	[exception]	[05-16-2015 2:07am]	2 ID does not exist
-[55568da2423cd]	[exception]	[05-16-2015 2:21am]	New Phone Not Created
-[55568df05f8c1]	[exception]	[05-16-2015 2:23am]	New Phone Not Created
-[55568f8885466]	[exception]	[05-16-2015 2:30am]	New Phone Not Created
+[55568ca05d2a7]	[exception]	[05-16-2015 2:17am]	1 ID does not exist
+[55568ca4de0b2]	[exception]	[05-16-2015 2:17am]	2 ID does not exist
+[55568ca696ce3]	[exception]	[05-16-2015 2:17am]	2 ID does not exist
+[55568cc414d80]	[exception]	[05-16-2015 2:18am]	4 ID does not exist
+[55568cc7d9a73]	[exception]	[05-16-2015 2:18am]	1 ID does not exist
+[55569363562bf]	[exception]	[05-16-2015 2:46am]	New Email Not Created
