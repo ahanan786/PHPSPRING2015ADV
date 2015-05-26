@@ -55,7 +55,7 @@ and open the template in the editor.
         <h3>Add Email Type</h3>
         <form action="#" method="post">
             <label>Email Type:</label>
-            <input type="text" name="emailtype" value="<strong<?php echo $emailtype; ?></strong>" />
+            <input type="text" name="emailtype" value="<?php echo $emailtype; ?>" />
             <input type="submit" value="Submit" />
         </form>
         
