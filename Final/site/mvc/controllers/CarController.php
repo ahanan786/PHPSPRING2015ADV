@@ -23,15 +23,9 @@ class CarController extends BaseController implements IController {
             
             
             if ( $scope->util->getAction() == 'create' ) {
-//                echo "<br/>POSTED<br/>";
-//                var_dump($scope->util->getPostValues());
-//                echo "<br/>";
+
                 $this->data['model']->map($scope->util->getPostValues());
-                
-//                echo "<br/>MODEL<br/>";
-//                var_dump($this->data["model"]);
-//                echo "<br/>";
-                
+
                 $this->data["errors"] = $this->service->validate($this->data['model']);
                 $this->data["saved"] = $this->service->create($this->data['model']);
             }
@@ -44,7 +38,7 @@ class CarController extends BaseController implements IController {
             
             if ( $scope->util->getAction() == 'delete' ) {                
                 echo "Car Controller in Delete Action";
-                //var_dump($this-)
+                
                 $this->data["deleted"] = $this->service->delete($scope->util->getPostParam('carid'));
             }
             
