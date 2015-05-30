@@ -79,6 +79,10 @@ class CarService implements IService {
     public function validate( IModel $model ) {
         $errors = array();
         
+        if (!$this->getValidator()->carYearIsValid($model->getYear()))
+        {
+            $errors[] = "Car year is not valid";            
+        }
 //        if ( !$this->getCarTypeService()->idExist($model->getCartypeid()) ) {
 //            $errors[] = 'Car Type is invalid';
 //        }

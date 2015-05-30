@@ -9,8 +9,9 @@ class Validator implements IService {
     
     
     //A method to check if an email is valid
-    public function carYearIsValid($email) {
-        return ( is_string($email) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) !== false );
+    public function carYearIsValid($year) {
+//        return ( !empty($year) && $year > 195 && $year < 2003 );
+        return ( !empty($year));
     }
     
     
