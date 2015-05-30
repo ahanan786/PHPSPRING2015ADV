@@ -8,6 +8,9 @@ abstract class BaseModel implements IModel {
     
     public function map(array $values) {
         
+//        echo "Map Values <br/>";
+//        var_dump($values);
+//        echo "<br/>";
         foreach ($values as $key => $value) {
            $method = 'set' . $key;
             if ( method_exists($this, $method) ) {

@@ -1253,3 +1253,8 @@
 [55495298d5cfd]	[exception]	[05-06-2015 1:30am]	SQLSTATE[HY000] [1049] Unknown database 'phpadvclassspring2015'
 [55495298da72a]	[exception]	[05-06-2015 1:30am]	SQLSTATE[HY000] [1049] Unknown database 'phpadvclassspring2015'
 [55495298df3ff]	[exception]	[05-06-2015 1:30am]	SQLSTATE[HY000] [1049] Unknown database 'phpadvclassspring2015'
+[5567bf5ddb8bb]	[exception]	[05-29-2015 3:22am]	Controller for page "emailtype" failed
+[5567bf603074e]	[exception]	[05-29-2015 3:22am]	Controller for page "email" failed
+[5567c3d4649e5]	[exception]	[05-29-2015 3:41am]	Controller for page "car" failed
+[556906ee48eed]	[exception]	[05-30-2015 2:40am]	Controller for page "login" failed
+[5569076d21dfd]	[exception]	[05-30-2015 2:42am]	Controller for page "login" failed

@@ -23,7 +23,7 @@ class CarTypeDAO extends BaseDAO implements IDAO {
     public function idExisit($id) {
         
         $db = $this->getDB();
-        $stmt = $db->prepare("SELECT * FROM cartype WHERE cartypeid = :cartypeid");
+        $stmt = $db->prepare("SELECT * FROM cartypes WHERE cartypeid = :cartypeid");
          
         if ( $stmt->execute(array(':cartypeid' => $id)) && $stmt->rowCount() > 0 ) {
             return true;
@@ -115,8 +115,8 @@ class CarTypeDAO extends BaseDAO implements IDAO {
        $db = $this->getDB();
        $values = array();
        
-        $stmt = $db->prepare("SELECT * FROM cartype");
-        
+        $stmt = $db->prepare("SELECT * FROM cartypes");
+       // var_dump($stmt);
         if ( $stmt->execute() && $stmt->rowCount() > 0 ) {
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

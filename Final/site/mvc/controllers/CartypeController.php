@@ -1,35 +1,23 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of PhonetypeController
- *
- * @author AHANAN
- */
-
 namespace APP\controller;
 
 use App\models\interfaces\IController;
 use App\models\interfaces\IService;
 
-class PhonetypeController extends BaseController implements IController {
+class CartypeController extends BaseController implements IController {
        
-    public function __construct( IService $PhoneTypeService ) {                
-        $this->service = $PhoneTypeService;     
+    public function __construct( IService $CarTypeService ) {                
+        $this->service = $CarTypeService;     
         
     }
 
 
     public function execute(IService $scope) {
                 
-        $this->data['model'] = $this->service->getNewPhoneTypeModel();
+        $this->data['model'] = $this->service->getNewCarTypeModel();
         $this->data['model']->reset();
-        $viewPage = 'phonetype';
+        $viewPage = 'cartype';
         
         
         if ( $scope->util->isPostRequest() ) {
@@ -49,19 +37,19 @@ class PhonetypeController extends BaseController implements IController {
             
             if ( $scope->util->getAction() == 'edit' ) {
                 $viewPage .= 'edit';
-                $this->data['model'] = $this->service->read($scope->util->getPostParam('phonetypeid'));
+                $this->data['model'] = $this->service->read($scope->util->getPostParam('cartypeid'));
                   
             }
             
             if ( $scope->util->getAction() == 'delete' ) {                
-                $this->data["deleted"] = $this->service->delete($scope->util->getPostParam('phonetypeid'));
+                $this->data["deleted"] = $this->service->delete($scope->util->getPostParam('cartypeid'));
             }
                        
         }
         
         
        
-        $this->data['PhoneTypes'] = $this->service->getAllRows();        
+        $this->data['CarTypes'] = $this->service->getAllRows();        
         
         
         $scope->view = $this->data;

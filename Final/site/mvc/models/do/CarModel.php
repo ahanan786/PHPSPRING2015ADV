@@ -17,16 +17,20 @@ class CarModel extends BaseModel {
     private $make;
     private $model;
     private $platenum;
-    private $condition;
+    private $carcondition;
     private $vin;
     private $price;
-    private $typeId;
+    private $cartypeid;
+    private $cartype;
     
     
     function getCarTypeId(){
-        return $this->typeId;
+        return $this->cartypeid;
     }
-    
+    function getCartype()
+    {
+        return $this->cartype;
+    }
     function getCarid() {
         return $this->carid;
     }
@@ -47,8 +51,8 @@ class CarModel extends BaseModel {
         return $this->platenum;
     }
 
-    function getCondition() {
-        return $this->condition;
+    function getCarcondition() {
+        return $this->carcondition;
     }
 
     function getVin() {
@@ -59,12 +63,17 @@ class CarModel extends BaseModel {
         return $this->price;
     }
     
-    function setCatTypeId($carTypeId)
+    function setCartype($cartype)
     {
-        $this->type = $carTypeId;
+        $this->cartype = $cartype;
     }
     
-    function setCarid($phoneid) {
+    function setCarTypeId($carTypeId)
+    {
+        $this->cartypeid = $carTypeId;
+    }
+    
+    function setCarid($carid) {
         $this->carid = $carid;
     }
 
@@ -80,13 +89,14 @@ class CarModel extends BaseModel {
         $this->model = $model;
     }
 
-    function setPlatenum($phonetypeactive) {
+    function setPlatenum($platenum) {
         $this->platenum = $platenum;
     }
     
-    function setCondition($condition) {
-        $this->condition = $condition;
+    function setCarcondition($carcondition) {
+        $this->carcondition = $carcondition;
     }
+    
 
     function setVin($vin) {
         $this->vin = $vin;

@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of PhoneService
+ * Description of CarService
  *
  * @author AHANAN
  */
@@ -11,10 +11,10 @@ use App\models\interfaces\IDAO;
 use App\models\interfaces\IService;
 use App\models\interfaces\IModel;
 
-class PhoneService implements IService {
+class CarService implements IService {
     
-    protected $phoneDAO;
-    protected $phoneTypeService;
+    protected $carDAO;
+    protected $carTypeService;
     protected $validator;
     protected $model;
                 function getValidator() {
@@ -25,20 +25,20 @@ class PhoneService implements IService {
         $this->validator = $validator;
     }                
      
-    function getPhoneDAO() {
-        return $this->phoneDAO;
+    function getCarDAO() {
+        return $this->carDAO;
     }
 
-    function setPhoneDAO(IDAO $DAO) {
-        $this->phoneDAO = $DAO;
+    function setCarDAO(IDAO $DAO) {
+        $this->carDAO = $DAO;
     }
     
-    function getPhoneTypeService() {
-        return $this->phoneTypeService;
+    function getCarTypeService() {
+        return $this->carTypeService;
     }
 
-    function setPhoneTypeService(IService $service) {
-        $this->phoneTypeService = $service;
+    function setCarTypeService(IService $service) {
+        $this->carTypeService = $service;
     }
     
     
@@ -50,28 +50,27 @@ class PhoneService implements IService {
         $this->model = $model;
     }
 
-        public function __construct( IDAO $phoneDAO, IService $phoneTypeService, IService $validator, IModel $model  ) {
-        $this->setPhoneDAO($phoneDAO);
-        $this->setPhoneTypeService($phoneTypeService);
+        public function __construct( IDAO $carDAO, IService $carTypeService, IService $validator, IModel $model  ) {
+        $this->setCarDAO($carDAO);
+        $this->setCarTypeService($carTypeService);
         $this->setValidator($validator);
         $this->setModel($model);
     }
     
     
-    public function getAllPhoneTypes() {       
-        return $this->getPhoneTypeService()->getAllRows();   
+    public function getAllCarTypes() {       
+        return $this->getCarTypeService()->getAllRows();   
         
     }
     
-     public function getAllPhones() {       
-        return $this->getPhoneDAO()->getAllRows();   
+     public function getAllCars() {       
+        return $this->getCarDAO()->getAllRows();   
         
     }
     
     public function create(IModel $model) {
-        
         if ( count($this->validate($model)) === 0 ) {
-            return $this->getPhoneDAO()->create($model);
+            return $this->getCarDAO()->create($model);
         }
         return false;
     }
@@ -80,17 +79,17 @@ class PhoneService implements IService {
     public function validate( IModel $model ) {
         $errors = array();
         
-        if ( !$this->getPhoneTypeService()->idExist($model->getPhonetypeid()) ) {
-            $errors[] = 'Phone Type is invalid';
-        }
-       
-        if ( !$this->getValidator()->phoneIsValid($model->getPhone()) ) {
-            $errors[] = 'Phone is invalid';
-        }
-               
-        if ( !$this->getValidator()->activeIsValid($model->getActive()) ) {
-            $errors[] = 'Phone active is invalid';
-        }
+//        if ( !$this->getCarTypeService()->idExist($model->getCartypeid()) ) {
+//            $errors[] = 'Car Type is invalid';
+//        }
+//       
+//        if ( !$this->getValidator()->carIsValid($model->getCar()) ) {
+//            $errors[] = 'Car is invalid';
+//        }
+//               
+//        if ( !$this->getValidator()->activeIsValid($model->getActive()) ) {
+//            $errors[] = 'Car active is invalid';
+//        }
        
         
         return $errors;
@@ -98,24 +97,27 @@ class PhoneService implements IService {
     
     
     public function read($id) {
-        return $this->getPhoneDAO()->read($id);
+        return $this->getCarDAO()->read($id);
     }
     
     public function delete($id) {
-        return $this->getPhoneDAO()->delete($id);
+        echo 'in service';
+       echo "<br/>".$id."<br/>";
+        return $this->getCarDAO()->delete($id);
+        
     }
-    
+   
     
      public function update(IModel $model) {
         
         if ( count($this->validate($model)) === 0 ) {
-            return $this->getPhoneDAO()->update($model);
+            return $this->getCarDAO()->update($model);
         }
         return false;
     }
     
     
-     public function getNewPhoneModel() {
+     public function getNewCarModel() {
         return clone $this->getModel();
     }
     

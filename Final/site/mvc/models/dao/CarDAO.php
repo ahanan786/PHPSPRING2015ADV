@@ -25,9 +25,9 @@ class CarDAO extends BaseDAO implements IDAO {
     public function idExisit($id) {
                 
         $db = $this->getDB();
-        $stmt = $db->prepare("SELECT Car_ID FROM cars WHERE Car_ID = :Car_ID");
+        $stmt = $db->prepare("SELECT CarID FROM cars WHERE CarID = :CarID");
          
-        if ( $stmt->execute(array(':Car_ID' => $id)) && $stmt->rowCount() > 0 ) {
+        if ( $stmt->execute(array(':CarID' => $id)) && $stmt->rowCount() > 0 ) {
             return true;
         }
          return false;
@@ -38,9 +38,10 @@ class CarDAO extends BaseDAO implements IDAO {
          $model = clone $this->getModel();
          
          $db = $this->getDB();
-         
-         $stmt = $db->prepare("SELECT cars.Car_ID, cars.Year, cars.Make, cars.platenum, cars.condition1,cartype.cartype"
-                 . " FROM cars LEFT JOIN carypes on cars.cartypeid = cartype.cartypeid WHERE Car_ID = :carid");
+           
+         $stmt = $db->prepare("SELECT cars.carid, cars.Year, cars.Make, cars.platenum,cars.model,cars.carcondition,  "
+                 . "cars.vin, cars.price, cartypes.cartype FROM cars "
+                 . "LEFT JOIN cartypes on cars.cartypeid = cartypes.cartypeid WHERE CarID =:carid");
          
         if ( $stmt->execute(array(':carid' => $id)) && $stmt->rowCount() > 0 ) {
              $results = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -54,32 +55,31 @@ class CarDAO extends BaseDAO implements IDAO {
     
     
     public function create(IModel $model) {
-                 
          $db = $this->getDB();
          
-         $binds = array( ":typeid" => $model->getCarTypeId(),
+         $binds = array( 
+                         ":typeid" => $model->getCarTypeId(),
                          ":year"=>$model->getYear(),
                          ":make"=>$model->getMake(),
                          ":model"=>$model->getModel(),
                          ":platenum"=>$model->getPlatenum(),
-                         ":condition"=>$model->getCondition(),
+                         ":condition"=>$model->getCarcondition(),
                          ":vin"=>$model->getVin(),
                          ":price"=>$model->getPrice(),
                     );
+         
                          
          if ( !$this->idExisit($model->getCarid()) ) {
-             
-             $stmt = $db->prepare("INSERT INTO cars SET  cartypeid = :typeid,"
+             $stmt = $db->prepare("INSERT INTO cars SET price =:price,cartypeid=:typeid,"
                      . " year = :year, make = :make , model = :model, platenum = :platenum,"
-                     .  "condition1 = :condition, vin = :vin, price = :price,"
-                     . " lastupdated = now()");
+                     .  " carcondition = :condition, vin = :vin");
              
              if ( $stmt->execute($binds) && $stmt->rowCount() > 0 ) {
-                return true;
+                 return true;
              }
          }
                   
-         
+         echo "<br/>Returning Fals<br/>";
          return false;
     }
     
@@ -94,18 +94,18 @@ class CarDAO extends BaseDAO implements IDAO {
                          ":make"=>$model->getMake(),
                          ":model"=>$model->getModel(),
                          ":platenum"=>$model->getPlatenum(),
-                         ":condition"=>$model->getCondition(),
+                         ":condition"=>$model->getCarcondition(),
                          ":vin"=>$model->getVin(),
                          ":price"=>$model->getPrice(),
                     );
-         
-                
-         if ( $this->idExisit($model->getCarid()) ) {
+      
+              if ( $this->idExisit($model->getCarid()) ) {
+           
             
              $stmt = $db->prepare("Update cars SET cartypeid = :typeid," 
                      ."year = :year, make = :make , model = :model, platenum = :platenum,"
-                     .  "condition1 = :condition, vin = :vin, price = :price, "
-                     . " lastupdated = now() WHERE Car_ID = :carid");
+                     .  "carcondition = :condition, vin = :vin, price = :price "
+                     . "  WHERE CarID = :carid");
              
              if ( $stmt->execute($binds) && $stmt->rowCount() > 0 ) {
                 return true;
@@ -120,9 +120,12 @@ class CarDAO extends BaseDAO implements IDAO {
     }
     
     public function delete($id) {
+        echo 'Deeleting</br>';
+        echo $id;
+        echo "<br/>";   
           
         $db = $this->getDB();         
-        $stmt = $db->prepare("Delete FROM cars WHERE Car_ID = :carid");
+        $stmt = $db->prepare("Delete FROM cars WHERE CarID = :carid");
 
         if ( $stmt->execute(array(':carid' => $id)) && $stmt->rowCount() > 0 ) {
             return true;
@@ -135,15 +138,16 @@ class CarDAO extends BaseDAO implements IDAO {
     }
     
     public function getAllRows() {
-       $db = $this->getDB();
+       echo "Getting all rows";
+        $db = $this->getDB();
        $values = array();
        
-        $stmt = $db->prepare("SELECT cars.Car_ID, cars.Year, cars.Make, cars.platenum, cars.condition1 ,cartype.cartype"
-                 . " FROM cars LEFT JOIN carypes on cars.cartypeid = cartype.cartypeid");
+        $stmt = $db->prepare("SELECT cars.carid, cars.Year, cars.Make,cars.Model, cars.platenum,cars.vin,cars.price, cars.carcondition ,cartypes.cartype cartype FROM cars LEFT JOIN cartypes on cars.cartypeid = cartypes.cartypeid");
         
         if ( $stmt->execute() && $stmt->rowCount() > 0 ) {
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+           // var_dump($results);
+            echo $stmt->rowCount();
             foreach ($results as $value) {
                $model = clone $this->getModel();
                $model->reset()->map($value);

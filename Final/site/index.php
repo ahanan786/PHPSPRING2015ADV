@@ -45,6 +45,7 @@ use Exception;
         //Run the application
         public function run(IService $scope) {  
             $page = $this->getPage();
+            echo $page;
             if ( !$this->runController($page,$scope) ) {
                 throw new ControllerFailedException('Controller for page "' . $page . '" failed');               
             }          
@@ -61,6 +62,7 @@ use Exception;
                 $controller = $this->DI[$class_name]();                
             } else { 
                 $class_name = "APP\\controller\\$class_name";
+                
                 if (class_exists($class_name)) {
                     $controller = new $class_name();
                     
@@ -165,15 +167,15 @@ use Exception;
         $_scope->util = new Util();
         $_validator = new Validator();
         
-        $_emailTypemodel = new EmailTypeModel();
-        $_emailmodel = new EmailModel();
+        $_carTypemodel = new CarTypeModel();
+        $_carmodel = new CarModel();
         
-        $_emailTypeDAO = new EmailTypeDAO($_pdo->getDB(), $_emailTypemodel, $_log);
-        $_emailDAO = new EmailDAO($_pdo->getDB(), $_emailmodel, $_log);
+        $_carTypeDAO = new CarTypeDAO($_pdo->getDB(), $_carTypemodel, $_log);
+        $_carDAO = new CarDAO($_pdo->getDB(), $_carmodel, $_log);
         
         
-        $_emailTypeService = new EmailTypeService($_emailTypeDAO, $_validator, $_emailTypemodel );
-        $_emailService = new EmailService($_emailDAO, $_emailTypeService, $_validator, $_emailmodel);
+        $_carTypeService = new CarTypeService($_carTypeDAO, $_validator, $_carTypemodel );
+        $_carService = new CarService($_carDAO, $_carTypeService, $_validator, $_carmodel);
         
          $_testService = new TestService();
         
@@ -181,12 +183,12 @@ use Exception;
         $index->addDIController('index', function() {            
             return new \APP\controller\IndexController();
         })
-        ->addDIController('emailtype', function() use ($_emailTypeService ) { 
-            return new \APP\controller\EmailtypeController($_emailTypeService);
+        ->addDIController('cartype', function() use ($_carTypeService ) { 
+            return new \APP\controller\CartypeController($_carTypeService);
         })
         
-        ->addDIController('email', function() use ($_emailService ) {                        
-            return new \APP\controller\EmailController($_emailService);
+        ->addDIController('car', function() use ($_carService ) {                        
+            return new \APP\controller\CarController($_carService);
         })
         ->addDIController('test', function()  use ($_testService ){           
             return new \APP\controller\TestController($_testService);

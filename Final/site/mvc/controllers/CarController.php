@@ -5,42 +5,56 @@ namespace APP\controller;
 use App\models\interfaces\IController;
 use App\models\interfaces\IService;
 
-class EmailController extends BaseController implements IController {
+class CarController extends BaseController implements IController {
    
     protected $service;
     
-    public function __construct( IService $EmailService  ) {                
-        $this->service = $EmailService;  
+    public function __construct( IService $CarService  ) {                
+        $this->service = $CarService;  
     }
     
     public function execute(IService $scope) {
-        $viewPage = 'email';
+        $viewPage = 'car';
         
-        $this->data['model'] = $this->service->getNewEmailModel();
+        $this->data['model'] = $this->service->getNewCarModel();
         $this->data['model']->reset();
         
         if ( $scope->util->isPostRequest() ) {
             
             
             if ( $scope->util->getAction() == 'create' ) {
+//                echo "<br/>POSTED<br/>";
+//                var_dump($scope->util->getPostValues());
+//                echo "<br/>";
                 $this->data['model']->map($scope->util->getPostValues());
+                
+//                echo "<br/>MODEL<br/>";
+//                var_dump($this->data["model"]);
+//                echo "<br/>";
+                
                 $this->data["errors"] = $this->service->validate($this->data['model']);
                 $this->data["saved"] = $this->service->create($this->data['model']);
             }
             
             if ( $scope->util->getAction() == 'edit' ) {
                 $viewPage .= 'edit';
-                $this->data['model'] = $this->service->read($scope->util->getPostParam('emailid'));
+                $this->data['model'] = $this->service->read($scope->util->getPostParam('carid'));
                   
             }
             
             if ( $scope->util->getAction() == 'delete' ) {                
-                $this->data["deleted"] = $this->service->delete($scope->util->getPostParam('emailid'));
+                echo "Car Controller in Delete Action";
+                //var_dump($this-)
+                $this->data["deleted"] = $this->service->delete($scope->util->getPostParam('carid'));
             }
             
              if ( $scope->util->getAction() == 'update'  ) {
-                $this->data['model']->map($scope->util->getPostValues());
-                $this->data["errors"] = $this->service->validate($this->data['model']);
+                
+                 
+                 $this->data['model']->map($scope->util->getPostValues());
+                
+//                $this->data["errors"] = $this->service->validate($this->data['model']);
+                
                 $this->data["updated"] = $this->service->update($this->data['model']);
                  $viewPage .= 'edit';
             }
@@ -49,8 +63,8 @@ class EmailController extends BaseController implements IController {
         }
         
         
-        $this->data['emailTypes'] = $this->service->getAllEmailTypes(); 
-        $this->data['emails'] = $this->service->getAllEmails(); 
+        $this->data['carTypes'] = $this->service->getAllCarTypes(); 
+        $this->data['cars'] = $this->service->getAllCars(); 
         
         $scope->view = $this->data;
         return $this->view($viewPage,$scope);
