@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2015 at 11:51 PM
+-- Generation Time: Jun 03, 2015 at 12:20 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -17,189 +17,68 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `phpadvclassspring2015`
+-- Database: `phpadvspring2015`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `email`
+-- Table structure for table `cars`
 --
 
-CREATE TABLE IF NOT EXISTS `email` (
-`emailid` int(10) unsigned NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `emailtypeid` tinyint(3) unsigned DEFAULT NULL,
-  `logged` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `lastupdated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `active` tinyint(1) unsigned NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE IF NOT EXISTS `cars` (
+`Carid` int(2) NOT NULL,
+  `Year` varchar(4) NOT NULL,
+  `Make` varchar(50) NOT NULL,
+  `Model` varchar(50) NOT NULL,
+  `platenum` varchar(7) NOT NULL,
+  `carcondition` varchar(8) NOT NULL,
+  `vin` varchar(22) DEFAULT NULL,
+  `price` int(8) NOT NULL,
+  `cartypeid` tinyint(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `emailtype`
+-- Table structure for table `cartypes`
 --
 
-CREATE TABLE IF NOT EXISTS `emailtype` (
-`emailtypeid` tinyint(3) unsigned NOT NULL,
-  `emailtype` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `active` tinyint(1) unsigned DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `final`
---
-
-CREATE TABLE IF NOT EXISTS `final` (
-  `Car_ID` int(11) NOT NULL,
-  `Make` text NOT NULL,
-  `Model` text NOT NULL,
-  `Year` int(11) NOT NULL,
-  `VIN` int(11) NOT NULL,
-  `PlateNum` text NOT NULL,
-  `Milage` int(11) NOT NULL,
-  `Price` text NOT NULL,
-  `Condition` text NOT NULL
+CREATE TABLE IF NOT EXISTS `cartypes` (
+  `cartypeid` tinyint(3) NOT NULL,
+  `cartype` varchar(50) NOT NULL,
+  `active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `phone`
+-- Dumping data for table `cartypes`
 --
 
-CREATE TABLE IF NOT EXISTS `phone` (
-`phoneid` int(10) unsigned NOT NULL,
-  `phone` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
-  `phonetypeid` tinyint(3) unsigned DEFAULT NULL,
-  `logged` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `lastupdated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `active` tinyint(1) unsigned NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `phonetype`
---
-
-CREATE TABLE IF NOT EXISTS `phonetype` (
-`phonetypeid` tinyint(3) unsigned NOT NULL,
-  `phonetype` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `active` tinyint(1) unsigned DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `phonetype`
---
-
-INSERT INTO `phonetype` (`phonetypeid`, `phonetype`, `active`) VALUES
-(2, 'sfgia', 1),
-(3, 'wf', 1),
-(4, 'haha', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `signup`
---
-
-CREATE TABLE IF NOT EXISTS `signup` (
-`id` int(11) NOT NULL,
-  `email` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
-  `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `active` tinyint(1) unsigned NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `cartypes` (`cartypeid`, `cartype`, `active`) VALUES
+(1, 'Sedan', 1),
+(2, 'Coupe', 1),
+(3, 'SUV', 1),
+(4, 'MiniVan', 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `email`
+-- Indexes for table `cars`
 --
-ALTER TABLE `email`
- ADD PRIMARY KEY (`emailid`), ADD UNIQUE KEY `email` (`email`), ADD KEY `emailtypeid` (`emailtypeid`);
-
---
--- Indexes for table `emailtype`
---
-ALTER TABLE `emailtype`
- ADD PRIMARY KEY (`emailtypeid`), ADD UNIQUE KEY `emailtype` (`emailtype`);
-
---
--- Indexes for table `final`
---
-ALTER TABLE `final`
- ADD PRIMARY KEY (`Car_ID`);
-
---
--- Indexes for table `phone`
---
-ALTER TABLE `phone`
- ADD PRIMARY KEY (`phoneid`), ADD UNIQUE KEY `phone` (`phone`), ADD KEY `phonetypeid` (`phonetypeid`);
-
---
--- Indexes for table `phonetype`
---
-ALTER TABLE `phonetype`
- ADD PRIMARY KEY (`phonetypeid`), ADD UNIQUE KEY `phonetype` (`phonetype`);
-
---
--- Indexes for table `signup`
---
-ALTER TABLE `signup`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`);
+ALTER TABLE `cars`
+ ADD PRIMARY KEY (`Carid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `email`
+-- AUTO_INCREMENT for table `cars`
 --
-ALTER TABLE `email`
-MODIFY `emailid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `emailtype`
---
-ALTER TABLE `emailtype`
-MODIFY `emailtypeid` tinyint(3) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `phone`
---
-ALTER TABLE `phone`
-MODIFY `phoneid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `phonetype`
---
-ALTER TABLE `phonetype`
-MODIFY `phonetypeid` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `signup`
---
-ALTER TABLE `signup`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `email`
---
-ALTER TABLE `email`
-ADD CONSTRAINT `email_ibfk_1` FOREIGN KEY (`emailtypeid`) REFERENCES `emailtype` (`emailtypeid`);
-
---
--- Constraints for table `phone`
---
-ALTER TABLE `phone`
-ADD CONSTRAINT `phone_ibfk_1` FOREIGN KEY (`phonetypeid`) REFERENCES `phonetype` (`phonetypeid`);
-
+ALTER TABLE `cars`
+MODIFY `Carid` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
