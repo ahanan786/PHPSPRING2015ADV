@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-         <link href="../models/services/app.css" rel="stylesheet" type="text/css"/>
+          <link href="app.css" rel="stylesheet" type="text/css"/>
         <meta charset="UTF-8">
         <title></title>
     </head>
