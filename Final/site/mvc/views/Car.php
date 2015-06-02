@@ -3,6 +3,7 @@
 <html>
     
     <head>
+        <link href="../models/services/app.css" rel="stylesheet" type="text/css"/>
         <meta charset="UTF-8">
         <title></title>
     </head>
@@ -100,8 +101,7 @@
                  
                 foreach ($scope->view['cars'] as $value) {
                     echo "<tr>";
-//                    echo '<td>'. $value->getCarTypeId(). '</td';
-//                    echo '<td>'. $value->getCarid().' </td';
+
                     
                     echo "<td>". $value->getYear()."</td>";
                    echo '<td>'. $value->getVin().'</td>';

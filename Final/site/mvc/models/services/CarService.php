@@ -20,6 +20,15 @@ class CarService implements IService {
                 function getValidator() {
         return $this->validator;
     }
+    /**
+     * Generate link.
+     * @CAR dao string $pad target page
+     * @Set validatr setting upp all the validation values
+     * function get car and set car is basically setting up both values of car
+     * @function getallcar types basically load all the cars 
+     * @validator making sure the year, make , model is setting up all the values
+     * @CRUD making sure everythiing is being create than read, update and delete
+     */
 
     function setValidator($validator) {
         $this->validator = $validator;
@@ -81,7 +90,7 @@ class CarService implements IService {
         
         if (!$this->getValidator()->carYearIsValid($model->getYear()))
         {
-            echo 'Car year has to be from 1950 to 2015'.'</br>';   
+            echo 'Car year has to be from 1950 to '.'</br>';   
            
         }
           if (!$this->getValidator()->carMakeIsValid($model->getMake()))
@@ -93,18 +102,7 @@ class CarService implements IService {
         {
             $errors[] = "Car Model is empty";
         }
-//        if ( !$this->getCarTypeService()->idExist($model->getCartypeid()) ) {
-//            $errors[] = 'Car Type is invalid';
-//        }
-//       
-//        if ( !$this->getValidator()->carIsValid($model->getCar()) ) {
-//            $errors[] = 'Car is invalid';
-//        }
-//               
-//        if ( !$this->getValidator()->activeIsValid($model->getActive()) ) {
-//            $errors[] = 'Car active is invalid';
-//        }
-       
+
         
         return $errors;
     }

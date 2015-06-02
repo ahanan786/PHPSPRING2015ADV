@@ -11,7 +11,15 @@
  *
  * @author User
  */
-
+/**
+     * Generate link.
+     * @CARtypeService dao string $pad target page
+     * @SetModel just returning model into priavate and public.
+     * class of CartYPERSERVICE setting up all the servicews  of car.
+     * @function getallcar types basically load all the cars 
+     * @getDoa setDoa making sure the types or email are getting into the databases
+     * @CRUD making sure everythiing is being create than read, update and delete
+     */
 namespace App\models\services;
 
 use App\models\interfaces\IDAO;
